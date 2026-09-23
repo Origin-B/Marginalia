@@ -1,4 +1,334 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+/* 
+  ==========================================================================
+  DESIGN SYSTEM & THEME MAPPINGS FOR MARGINALIA
+  ==========================================================================
+*/
 
 @theme {
+  /* Base surfaces */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+
+  /* Text & Foreground */
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Primary */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-on-primary: var(--on-primary);
+
+  /* Secondary & Accents */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-ring: var(--ring);
+
+  /* Custom Domain Colors (Open Questions & Resolved) */
+  --color-question: var(--question);
+  --color-on-question: var(--on-question);
+  --color-resolved: var(--resolved);
+
+  /* Fonts */
+  --font-Inter: "Inter", sans-serif;
+  --font-Lora: "Lora", serif;
+
+  /* Spacing */
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-base: 16px;
+
+  /* Shadows */
+  --shadow-card: 0 5px 18px 0 rgba(38, 51, 44, 0.12);
+}
+
+/*
+==========================================================================
+    THEMES PALETTES (LIGHT & DARK VARIATIONS)
+==========================================================================
+*/
+
+/* 1. Light Classic (Default) */
+:root,
+.light-classic {
+  --background: #f8f9fb;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #14171f;
+  --border: #e3e6ec;
+  --input: #e3e6ec;
+
+  --foreground: #14171f;
+  --muted: #5b6272;
+  --muted-foreground: #5b6272;
+
+  --primary: #3b4cca;
+  --primary-foreground: #ffffff;
+  --on-primary: #ffffff;
+
+  --secondary: #f1f3f9;
+  --secondary-foreground: #3b4cca;
+  --accent: #f1f3f9;
+  --accent-foreground: #14171f;
+  --destructive: #ef4444;
+  --ring: #3b4cca;
+
+  --question: #b8480a;
+  --on-question: #ffffff;
+  --resolved: #1f7a52;
+}
+
+/* 2. Light Sepia (Reading book vibe) */
+.light-sepia {
+  --background: #fbf8f2;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #2c2522;
+  --border: #e6dfd5;
+  --input: #e6dfd5;
+
+  --foreground: #2c2522;
+  --muted: #786c65;
+  --muted-foreground: #786c65;
+
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --on-primary: #ffffff;
+
+  --secondary: #f4eee2;
+  --secondary-foreground: #4f46e5;
+  --accent: #f4eee2;
+  --accent-foreground: #2c2522;
+  --destructive: #dc2626;
+  --ring: #4f46e5;
+
+  --question: #c2410c;
+  --on-question: #ffffff;
+  --resolved: #047857;
+}
+
+/* 3. Light Mint */
+.light-mint {
+  --background: #f4f8f7;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #102a25;
+  --border: #d4e2df;
+  --input: #d4e2df;
+
+  --foreground: #102a25;
+  --muted: #5c7670;
+  --muted-foreground: #5c7670;
+
+  --primary: #0284c7;
+  --primary-foreground: #ffffff;
+  --on-primary: #ffffff;
+
+  --secondary: #e2edea;
+  --secondary-foreground: #0284c7;
+  --accent: #e2edea;
+  --accent-foreground: #102a25;
+  --destructive: #e11d48;
+  --ring: #0284c7;
+
+  --question: #d97706;
+  --on-question: #ffffff;
+  --resolved: #059669;
+}
+
+/* 4. Dark Midnight */
+
+.dark-midnight {
+  --background: #0f1117;
+  --surface: #1a1d26;
+  --card: #1a1d26;
+  --card-foreground: #f1f3f9;
+  --border: #2d3242;
+  --input: #2d3242;
+
+  --foreground: #f1f3f9;
+  --muted: #949cae;
+  --muted-foreground: #949cae;
+
+  --primary: #5865f2;
+  --primary-foreground: #ffffff;
+  --on-primary: #ffffff;
+
+  --secondary: #242836;
+  --secondary-foreground: #f1f3f9;
+  --accent: #242836;
+  --accent-foreground: #f1f3f9;
+  --destructive: #f87171;
+  --ring: #5865f2;
+
+  --question: #ff7b3b;
+  --on-question: #0f1117;
+  --resolved: #2ecc71;
+}
+
+/* 5. Dark Mocha */
+.dark-mocha {
+  --background: #181512;
+  --surface: #24201c;
+  --card: #24201c;
+  --card-foreground: #f5f2ed;
+  --border: #3b332d;
+  --input: #3b332d;
+
+  --foreground: #f5f2ed;
+  --muted: #a69c93;
+  --muted-foreground: #a69c93;
+
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --on-primary: #ffffff;
+
+  --secondary: #302a24;
+  --secondary-foreground: #f5f2ed;
+  --accent: #302a24;
+  --accent-foreground: #f5f2ed;
+  --destructive: #fb7185;
+  --ring: #7c3aed;
+
+  --question: #ea580c;
+  --on-question: #ffffff;
+  --resolved: #059669;
+}
+
+/* 6. Dark Cyber */
+.dark-cyber {
+  --background: #090d16;
+  --surface: #111827;
+  --card: #111827;
+  --card-foreground: #f9fafb;
+  --border: #1f293d;
+  --input: #1f293d;
+
+  --foreground: #f9fafb;
+  --muted: #9ca3af;
+  --muted-foreground: #9ca3af;
+
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --on-primary: #ffffff;
+
+  --secondary: #1f293d;
+  --secondary-foreground: #f9fafb;
+  --accent: #1f293d;
+  --accent-foreground: #f9fafb;
+  --destructive: #f43f5e;
+  --ring: #6366f1;
+
+  --question: #f97316;
+  --on-question: #090d16;
+  --resolved: #10b981;
+}
+
+/* 
+==========================================================================
+    BASE LAYER DEFAULTS
+==========================================================================
+*/
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-muted antialiased;
+  }
+  html {
+    @apply font-Inter;
+  }
+}
+
+@utility glass-panel {
+  @apply bg-surface/80 border-border/50 shadow-card border backdrop-blur-md;
+}
+
+@utility app-container {
+  @apply px-base mx-auto w-full max-w-6xl md:px-8;
+}
+
+@utility badge-base {
+  @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold tracking-wide;
+}
+
+@utility badge-question {
+  @apply badge-base bg-question/10 text-question border-question/20 border;
+}
+
+@utility badge-resolved {
+  @apply badge-base bg-resolved/10 text-resolved border-resolved/20 border;
+}
+
+@utility badge-primary {
+  @apply badge-base bg-primary/10 text-primary border-primary/20 border;
+}
+
+@utility input-style {
+  @apply bg-surface text-foreground border-input px-base focus:ring-ring placeholder:text-muted rounded-xl border py-3 text-sm transition-all focus:border-transparent focus:ring-2 focus:outline-none;
+}
+
+@utility interactive-link {
+  @apply text-muted hover:text-primary font-medium transition-colors duration-200;
+}
+
+@utility card-hover {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* ==========================================================================
+    HEADER & TYPOGRAPHY UTILITIES (No H4 Version)
+   ========================================================================== */
+
+/* 1. العنوان الرئيسي للصفحة (أكبر عنوان، زي اسم الصفحة في الـ Hero) */
+@utility heading-h1 {
+  @apply text-foreground font-Lora text-[clamp(2.5rem,2.5rem+.034vw,2.8rem)] leading-[112%] font-bold tracking-tight;
+}
+
+/* 2. عنوان قسم رئيسي أو سكشن (بديل ممتاز لـ H2) */
+@utility heading-h2 {
+  @apply text-foreground font-Lora text-xl font-bold tracking-tight md:text-2xl;
+}
+
+/* 3. عنوان فرعي أو داخل الكروت (بديل ممتاز لـ H3) */
+@utility heading-h3 {
+  @apply text-foreground font-Lora text-lg font-semibold md:text-xl;
+}
+
+/* 4. تنسيق الهيدر العلوي للموقع (Sticky Navbar) */
+@utility app-header {
+  @apply border-border bg-surface/80 sticky top-0 z-50 w-full border-b backdrop-blur-md transition-colors;
+}
+
+/* 5. تنسيق محتوى الهيدر الداخلي (لتوزيع اللوجو واللينكات بأريحيّة) */
+@utility header-container {
+  @apply px-base mx-auto flex h-16 max-w-6xl items-center justify-between;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-border hover:bg-muted/50 rounded-full transition-colors;
+  }
 }
